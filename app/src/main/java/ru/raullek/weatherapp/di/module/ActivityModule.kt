@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import ru.raullek.weatherapp.di.ActivityScope
 import ru.raullek.weatherapp.domain.interactor.AddCityInteractor
+import ru.raullek.weatherapp.domain.interactor.ForecastInteractor
 import ru.raullek.weatherapp.domain.interactor.MainInteractor
 import ru.raullek.weatherapp.domain.interactor.UseCase
 
@@ -26,6 +27,12 @@ class ActivityModule(private val context: AppCompatActivity) {
     @ActivityScope
     fun getAddCityInteractor(addCityInteractor: AddCityInteractor): UseCase {
         return addCityInteractor
+    }
+
+    @Provides
+    @ActivityScope
+    fun getForecastInteractor(forecastInteractor: ForecastInteractor): UseCase {
+        return forecastInteractor
     }
 
 

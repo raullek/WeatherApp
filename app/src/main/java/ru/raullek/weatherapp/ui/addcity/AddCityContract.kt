@@ -1,5 +1,7 @@
 package ru.raullek.weatherapp.ui.addcity
 
+import android.widget.EditText
+import android.widget.SearchView
 import ru.raullek.weatherapp.domain.model.City
 
 interface AddCityMvpView{
@@ -10,8 +12,8 @@ interface AddCityMvpView{
 }
 
 interface AddCityMvpPresenter{
-    fun initSearch(name:String?)
     fun addCity(city: City)
+    fun initSearch(editText: EditText)
     fun onAttach(view: AddCityMvpView)
     fun onDetach()
 

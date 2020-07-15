@@ -18,6 +18,7 @@ import ru.raullek.weatherapp.di.module.ActivityModule
 import ru.raullek.weatherapp.domain.helper.SwipeToDeleteCallback
 import ru.raullek.weatherapp.domain.model.CityModel
 import ru.raullek.weatherapp.ui.addcity.AddCityActivity
+import ru.raullek.weatherapp.ui.weatherdetail.CityForecastActivity
 import javax.inject.Inject
 
 
@@ -55,6 +56,10 @@ class MainScreenActivity : AppCompatActivity(), MainScreenMvpView {
     }
 
     fun goToDetailScreen(cityModel: CityModel) {
+        val intent = Intent(this,CityForecastActivity::class.java).also {
+            it.putExtra(CityForecastActivity.CITY_KEY,cityModel)
+        }
+        startActivity(intent)
 
     }
 
@@ -93,5 +98,10 @@ class MainScreenActivity : AppCompatActivity(), MainScreenMvpView {
         }
         val itemTouchhelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchhelper.attachToRecyclerView(cities_list_rv)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDetach()
     }
 }

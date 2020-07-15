@@ -39,28 +39,9 @@ class AddCityActivity : AppCompatActivity(), AddCityMvpView {
     private fun setUp() {
         citiesAdapter = CitiesAdapter { city -> presenter.addCity(city) }
         initToolbar()
-        initSearch()
+        presenter.initSearch(edit_name)
 
-    }
 
-    private fun initSearch() {
-        disposable = Observable.create(ObservableOnSubscribe<String> { subscriber ->
-            edit_name.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(p0: Editable?) {
-                    subscriber.onNext(p0.toString())
-                }
-
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-            })
-        }).map { text -> text.toLowerCase().trim() }
-            .debounce(400, TimeUnit.MILLISECONDS)
-            .subscribe { text ->
-                presenter.initSearch(text)
-            }
     }
 
     private fun initToolbar() {
