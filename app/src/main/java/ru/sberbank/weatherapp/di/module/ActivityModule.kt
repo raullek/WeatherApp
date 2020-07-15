@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.Module
 import dagger.Provides
 import ru.sberbank.weatherapp.di.ActivityScope
+import ru.sberbank.weatherapp.domain.interactor.AddCityInteractor
 import ru.sberbank.weatherapp.domain.interactor.MainInteractor
 import ru.sberbank.weatherapp.domain.interactor.UseCase
 
@@ -19,6 +20,12 @@ class ActivityModule(private val context: AppCompatActivity) {
     @ActivityScope
     fun getMainInteractor(mainInteractor: MainInteractor): UseCase {
         return mainInteractor
+    }
+
+    @Provides
+    @ActivityScope
+    fun getAddCityInteractor(addCityInteractor: AddCityInteractor): UseCase {
+        return addCityInteractor
     }
 
 

@@ -4,6 +4,7 @@ import dagger.Component
 import ru.sberbank.weatherapp.di.ActivityScope
 import ru.sberbank.weatherapp.di.module.ActivityModule
 import ru.sberbank.weatherapp.di.module.PresenterModule
+import ru.sberbank.weatherapp.ui.addcity.AddCityActivity
 import ru.sberbank.weatherapp.ui.main.MainScreenActivity
 
 @ActivityScope
@@ -11,4 +12,5 @@ import ru.sberbank.weatherapp.ui.main.MainScreenActivity
 interface ActivityComponent {
 
     fun inject(mainScreenActivity: MainScreenActivity)
+    fun inject(addCityActivity: AddCityActivity)
 }
