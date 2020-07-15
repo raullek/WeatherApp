@@ -10,7 +10,7 @@ import ru.sberbank.weatherapp.domain.model.City
 
 class CitiesAdapter(val onItemClick: (City) -> Unit) :
     RecyclerView.Adapter<CitiesAdapter.CitiesViewHolder>() {
-    private val cities = mutableListOf<City>()
+    private val mCities = mutableListOf<City>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CitiesViewHolder {
@@ -18,18 +18,18 @@ class CitiesAdapter(val onItemClick: (City) -> Unit) :
         return CitiesViewHolder(v)
     }
 
-    fun setList(categories: List<City>) {
-        cities.clear()
-        cities.addAll(categories)
+    fun setList(cities: List<City>) {
+        mCities.clear()
+        mCities.addAll(cities)
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
-        return cities.size
+        return mCities.size
     }
 
     override fun onBindViewHolder(holder: CitiesViewHolder, position: Int) {
-        holder.bind(cities[position],onItemClick)
+        holder.bind(mCities[position],onItemClick)
     }
 
     inner class CitiesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
